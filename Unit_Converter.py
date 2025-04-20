@@ -1,5 +1,5 @@
 import streamlit as st
-# Function to convert length
+
 def convert_length(value, from_unit, to_unit):
     length_units = {
         'meters': 1,
@@ -9,12 +9,12 @@ def convert_length(value, from_unit, to_unit):
         'inches': 0.0254
     }
     
-    # Convert input value to meters
+    # Convert value to meters
     value_in_meters = value * length_units[from_unit]
     # Convert meters to the desired unit
     return value_in_meters / length_units[to_unit]
 
-# Function to convert temperature
+# Convert temperature
 def convert_temperature(value, from_unit, to_unit):
     if from_unit == 'Celsius':
         if to_unit == 'Fahrenheit':
@@ -38,13 +38,13 @@ def convert_temperature(value, from_unit, to_unit):
         else:
             return value  # Kelvin to Kelvin
 
-# Streamlit app layout
+# App layout
 st.title("Unit Converter")
 
 # User input
 value = st.number_input("Enter the value to convert:", value=0.0)
 
-# Select conversion category
+# Conversion category
 conversion_category = st.selectbox("Select conversion category:", ["Length", "Temperature"])
 
 if conversion_category == "Length":
