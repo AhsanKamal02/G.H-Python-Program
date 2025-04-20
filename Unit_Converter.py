@@ -10,7 +10,7 @@ def convert_length(value, from_unit, to_unit):
     }
     
     value_in_meters = value * length_units[from_unit]
-    # Convert meters to the desired unit
+
     return value_in_meters / length_units[to_unit]
 
 def convert_temperature(value, from_unit, to_unit):
@@ -36,7 +36,8 @@ def convert_temperature(value, from_unit, to_unit):
         elif to_unit == 'Fahrenheit':
             return (value - 273.15) * 9/5 + 32
         else:
-            return value  # Kelvin to Kelvin
+            return value
+
 
 st.title("Unit Converter")
 
