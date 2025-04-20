@@ -9,12 +9,10 @@ def convert_length(value, from_unit, to_unit):
         'inches': 0.0254
     }
     
-    # Convert value to meters
     value_in_meters = value * length_units[from_unit]
     # Convert meters to the desired unit
     return value_in_meters / length_units[to_unit]
 
-# Convert temperature
 def convert_temperature(value, from_unit, to_unit):
     if from_unit == 'Celsius':
         if to_unit == 'Fahrenheit':
@@ -22,14 +20,16 @@ def convert_temperature(value, from_unit, to_unit):
         elif to_unit == 'Kelvin':
             return value + 273.15
         else:
-            return value  # Celsius to Celsius
+            return value
+
     elif from_unit == 'Fahrenheit':
         if to_unit == 'Celsius':
             return (value - 32) * 5/9
         elif to_unit == 'Kelvin':
             return (value - 32) * 5/9 + 273.15
         else:
-            return value  # Fahrenheit to Fahrenheit
+            return value
+
     elif from_unit == 'Kelvin':
         if to_unit == 'Celsius':
             return value - 273.15
@@ -37,14 +37,11 @@ def convert_temperature(value, from_unit, to_unit):
             return (value - 273.15) * 9/5 + 32
         else:
             return value  # Kelvin to Kelvin
-
-# App layout
+
 st.title("Unit Converter")
-
-# User input
+
 value = st.number_input("Enter the value to convert:", value=0.0)
-
-# Conversion category
+
 conversion_category = st.selectbox("Select conversion category:", ["Length", "Temperature"])
 
 if conversion_category == "Length":
