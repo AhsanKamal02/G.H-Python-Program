@@ -1,5 +1,6 @@
-def password_strength(password: str) -> tuple[str, str]:
+import streamlit as st
 
+def password_strength(password: str) -> tuple[str, str]:
     score = 0
     feedback = []
     special_chars = set('!@#$%^&*')
@@ -52,22 +53,23 @@ def password_strength(password: str) -> tuple[str, str]:
 
     return strength, feedback_text
 
-
 def main():
-    print("Welcome to Password Strength Meter!")
-    print("A strong password should:")
-    print("✅ Be at least 8 characters long")
-    print("✅ Contain uppercase & lowercase letters")
-    print("✅ Include at least one digit (0-9)")
-    print("✅ Have one special character (!@#$%^&*)")
-    
-    password = input("Enter your password: ")
+    st.title("Password Strength Meter")
+    st.write("A strong password should:")
+    st.write("✅ Be at least 8 characters long")
+    st.write("✅ Contain uppercase & lowercase letters")
+    st.write("✅ Include at least one digit (0-9)")
+    st.write("✅ Have one special character (!@#$%^&*)")
 
-    strength, feedback = password_strength(password)
+    password = st.text_input("Enter your password:", type="password")
 
-    print(f"\nPassword Strength: {strength}")
-    print(f"Feedback: {feedback}")
-
+    if st.button("Check Password Strength"):
+        if password:
+            strength, feedback = password_strength(password)
+            st.write(f"**Password Strength:** {strength}")
+            st.write(f"**Feedback:** {feedback}")
+        else:
+            st.warning("Please enter a password to check its strength.")
 
 if __name__ == "__main__":
     main()
